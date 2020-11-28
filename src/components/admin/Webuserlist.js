@@ -23,13 +23,17 @@ function Webuserlist() {
 
 
     function deleteuser(id) {
+        
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: id })
         };
 
-        fetch("http://localhost:3001/api/webuser/delete", requestOptions)
+        let token = localStorage.getItem("tokenkey");
+
+
+        fetch("http://localhost:3001/api/webuser/delete?token=" + token, requestOptions)
             .then((res) => res.json())
             .then((r) => {
 
@@ -108,8 +112,10 @@ function Webuserlist() {
             body: JSON.stringify(values)
         };
 
+        let token = localStorage.getItem("tokenkey");
 
-        fetch("http://localhost:3001/api/webuser/add", requestOptions)
+
+        fetch("http://localhost:3001/api/webuser/add?token=" + token, requestOptions)
             .then((res) => res.json())
             .then((result) => {
 
@@ -202,10 +208,6 @@ function Webuserlist() {
                 </Form.Item>
 
             </Form>
-
-
-
-
 
 
             {/* 
