@@ -120,8 +120,11 @@ function Webuserlist() {
 
     const fillData = () => {
 
-        fetch("http://localhost:3001/api/webuser")
-            .then((res) => res.json())
+        let token = localStorage.getItem("tokenkey");
+
+
+        fetch("http://localhost:3001/api/webuser?token=" + token)
+            .then((res) => res.status === 200 ? res.json() : [])
             .then((result) => {
                 let usersvm = [];
 

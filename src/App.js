@@ -5,10 +5,31 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Webuserlist from './components/admin/Webuserlist'
 import Contactlist from './components/admin/Contactlist'
 import Formikexample from './components/admin/Formikexample';
+import React, { useEffect } from 'react'
+
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
+
+  useEffect(() => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ "email": "cagatay.yildiz@bilgeadam.com", "password": "123" })
+    };
+
+
+    fetch("http://localhost:3001/token", requestOptions)
+      .then((res) => res.json())
+      .then((result) => {
+
+        localStorage.setItem("tokenkey", result.token);
+      })
+
+  }, [])
+
+
   return (
     <div>
       <BrowserRouter>
@@ -17,7 +38,7 @@ function App() {
         <Layout className="layout">
 
           <Header>
-           
+
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
               <Menu.Item key="1"><Link to="/">Web Users</Link></Menu.Item>
               <Menu.Item key="2">Products</Menu.Item>

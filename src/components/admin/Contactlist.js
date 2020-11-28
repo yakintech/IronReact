@@ -31,10 +31,16 @@ function Contactlist() {
     ]
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/contact")
-            .then((res) => res.json())
+
+        let token = localStorage.getItem("tokenkey");
+
+        fetch("http://localhost:3001/api/contact/?token=" + token)
+            .then((res) => res.status === 200 ? res.json() : [])
             .then((result) => {
                 setContacts(result);
+            })
+            .catch((err)=>{
+                console.log(err);
             })
     }, []);
 
