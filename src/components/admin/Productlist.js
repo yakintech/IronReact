@@ -44,12 +44,18 @@ function Productlist() {
 
 
     useEffect(() => {
+        fillProducts();
+    }, []);
+
+
+    const fillProducts = () => {
         let url = "http://localhost:3001/api/products/?token=" + token;
 
         fetch(url)
             .then((res) => res.json())
             .then((result) => {
 
+                console.log(result);
                 let productsvm = []
 
                 result.forEach((item) => {
@@ -59,15 +65,17 @@ function Productlist() {
                         price: item.price,
                         code: item.code,
                         categories: item.categories,
-                        mainimage: item.images[0]
+                        mainimage: item.images[0],
+                        id: item._id
                     };
-
                     productsvm.push(p);
-                    setproducts(productsvm);
 
                 })
+
+                setproducts(productsvm);
             })
-    }, [])
+
+    }
 
     const handlePreview = async file => {
         if (!file.url && !file.preview) {
@@ -104,18 +112,21 @@ function Productlist() {
             .then((res) => res.json())
             .then((result) => {
 
-
+                fillProducts();
             })
     }
 
-    
-    
+
+    const tableimagestyle = {
+        width: "50px",
+        height: "50px"
+    };
     const columns = [
         {
             title: "Main Image",
             dataIndex: "mainimage",
             key: "mainimage",
-            render: mainimage =>  <img src={'http://localhost:3001/images/productimages/' + mainimage} />
+            render: mainimage => <img style={tableimagestyle} src={'http://localhost:3001/images/productimages/' + mainimage} />
         },
         {
             title: "Name",
@@ -140,10 +151,37 @@ function Productlist() {
             title: "Categories",
             dataIndex: "categories",
             key: "categories"
+        },
+        {
+            title: "Delete",
+            dataIndex: "id",
+            key: "id",
+            render: id => <Button danger onClick={() => deleteproduct(id)}>Delete</Button>
         }
-       
+
 
     ]
+
+
+    function deleteproduct(id) {
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+        };
+
+        let token = localStorage.getItem("tokenkey");
+
+
+        fetch("http://localhost:3001/api/products/delete?token=" + token, requestOptions)
+            .then((res) => res.json())
+            .then((r) => {
+
+                fillProducts();
+
+            })
+    }
 
 
 
@@ -199,7 +237,6 @@ function Productlist() {
                     label="Images"
                 >
                     <Upload
-                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                         listType="picture-card"
                         fileList={fileList}
                         onPreview={handlePreview}
@@ -258,7 +295,7 @@ function Productlist() {
 
             </Form>
 
-                    
+
 
             <Table dataSource={products} columns={columns} />
 
