@@ -6,6 +6,7 @@ import Webuserlist from './components/admin/Webuserlist'
 import Contactlist from './components/admin/Contactlist'
 import Formikexample from './components/admin/Formikexample';
 import React, { useEffect } from 'react'
+import Productlist from './components/admin/Productlist';
 
 
 const { Header, Content, Footer } = Layout;
@@ -41,7 +42,7 @@ function App() {
 
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
               <Menu.Item key="1"><Link to="/">Web Users</Link></Menu.Item>
-              <Menu.Item key="2">Products</Menu.Item>
+              <Menu.Item key="2"><Link to="/Admin/Products">Products</Link></Menu.Item>
               <Menu.Item key="3">Orders</Menu.Item>
               <Menu.Item key="4"><Link to="/Contacts">Contact Messages</Link></Menu.Item>
               <Menu.Item key="5"><Link to="/Formik">Formik Sample</Link></Menu.Item>
@@ -60,6 +61,9 @@ function App() {
                 </Route>
                 <Route path="/Formik">
                   <Formikexample></Formikexample>
+                </Route>
+                <Route path="/Admin/Products">
+                  <Productlist></Productlist>
                 </Route>
               </Switch>
             </div>
