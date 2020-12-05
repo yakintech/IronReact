@@ -4,6 +4,10 @@ import { Table, Button, Input, Form } from 'antd';
 import moment from 'moment';
 import 'moment/locale/tr';
 import TextArea from 'antd/lib/input/TextArea';
+import Propssample from './Propssample';
+import { gettoken } from '../../services/tokenservice';
+import { getwebusers } from '../../services/webuserservice'
+
 
 moment.locale("tr")
 
@@ -23,7 +27,7 @@ function Webuserlist() {
 
 
     function deleteuser(id) {
-        
+
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -42,7 +46,7 @@ function Webuserlist() {
             })
     }
 
-    
+
     const columns = [
         {
             title: "EMail",
@@ -125,31 +129,22 @@ function Webuserlist() {
     }
 
 
-    const fillData = () => {
+    const fillData = async () => {
 
-        let token = localStorage.getItem("tokenkey");
-
-
-        fetch("http://localhost:3001/api/webuser?token=" + token)
-            .then((res) => res.status === 200 ? res.json() : [])
-            .then((result) => {
-                let usersvm = [];
-
-                result.forEach(element => {
-                    element.adddate = moment(element.adddate).format('DD MMMM YYYY');
-                    element.phone = "+90" + element.phone;
-                    element.address1 = element.address[0];
-                    usersvm.push(element);
-                });
-
-                setWebusers(usersvm);
-            })
-
+        let data = await getwebusers(gettoken())
+        setWebusers(data);
 
     }
 
+    const [deger, setDeger] = useState('bilge');
+
+
     return (
         <div>
+
+            {/* <input type="text" onChange={(e) => setDeger(e.target.value)} />
+
+            <Propssample name="Çağatay Yıldız"></Propssample> */}
 
             <Form
                 name="basic"

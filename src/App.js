@@ -7,6 +7,9 @@ import Contactlist from './components/admin/Contactlist'
 import Formikexample from './components/admin/Formikexample';
 import React, { useEffect } from 'react'
 import Productlist from './components/admin/Productlist';
+import Orderoperation from './components/admin/Orderoperation';
+import { OrderProvider } from './context/Ordercontext';
+import Memosample from './components/admin/Memosample';
 
 
 const { Header, Content, Footer } = Layout;
@@ -46,6 +49,8 @@ function App() {
               <Menu.Item key="3">Orders</Menu.Item>
               <Menu.Item key="4"><Link to="/Contacts">Contact Messages</Link></Menu.Item>
               <Menu.Item key="5"><Link to="/Formik">Formik Sample</Link></Menu.Item>
+              <Menu.Item key="6"><Link to="/Order">Order Sample</Link></Menu.Item>
+
 
             </Menu>
           </Header>
@@ -55,6 +60,13 @@ function App() {
               <Switch>
                 <Route exact path="/">
                   <Webuserlist></Webuserlist>
+                </Route>
+                <Route exact path="/Order">
+                  <Memosample></Memosample>
+                  <OrderProvider>
+                    <Orderoperation></Orderoperation>
+                  </OrderProvider>
+
                 </Route>
                 <Route path="/Contacts">
                   <Contactlist></Contactlist>

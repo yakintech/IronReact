@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import 'antd/dist/antd.css';
 import { Table } from 'antd';
+import { getcontacts } from '../../services/contactservice';
+import { gettoken } from '../../services/tokenservice';
+
 
 function Contactlist() {
 
     const [contacts, setContacts] = useState([]);
 
-    
+
     const columns = [
         {
             title: "Title",
@@ -30,18 +33,11 @@ function Contactlist() {
 
     ]
 
-    useEffect(() => {
+    useEffect(async () => {
 
-        let token = localStorage.getItem("tokenkey");
+        let data = await getcontacts(gettoken());
+        setContacts(data);
 
-        fetch("http://localhost:3001/api/contact/?token=" + token)
-            .then((res) => res.status === 200 ? res.json() : [])
-            .then((result) => {
-                setContacts(result);
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
     }, []);
 
 
