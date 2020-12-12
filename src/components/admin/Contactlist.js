@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import 'antd/dist/antd.css';
 import { Table } from 'antd';
-import { getcontacts } from '../../services/contactservice';
-import { gettoken } from '../../services/tokenservice';
+import {getall} from '../../services/baseservice'
 
 
 function Contactlist() {
@@ -34,8 +33,7 @@ function Contactlist() {
     ]
 
     useEffect(async () => {
-
-        let data = await getcontacts(gettoken());
+        let data = await getall("/api/contact");
         setContacts(data);
 
     }, []);

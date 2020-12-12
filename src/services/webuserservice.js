@@ -1,11 +1,12 @@
 import moment from 'moment';
 import 'moment/locale/tr';
+import {config} from '../env/config'
 
 export const getwebusers = async (token) => {
     let data = [];
 
 
-    await fetch("http://localhost:3001/api/webuser?token=" + token)
+    await fetch(config.url + "/api/webuser?token=" + token)
         .then((res) => res.status === 200 ? res.json() : [])
         .then((result) => {
             let usersvm = [];
@@ -19,7 +20,6 @@ export const getwebusers = async (token) => {
             data = usersvm;
         })
 
-    console.log(data);
     return data;
 
 

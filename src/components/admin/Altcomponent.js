@@ -1,5 +1,4 @@
 import React from 'react'
-import { reach } from 'yup'
 
 function Altcomponent(props) {
 
