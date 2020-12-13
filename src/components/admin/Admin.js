@@ -34,7 +34,7 @@ function Admin() {
                             <Menu.Item key="2"><Link to="/Admin/Products">Products</Link></Menu.Item>
                             <Menu.Item key="3"><Link to="/Categories">Categories</Link></Menu.Item>
                             <Menu.Item key="4">Orders</Menu.Item>
-                            <Menu.Item key="5"><Link to="/Contacts">Contact Messages</Link></Menu.Item>
+                            <Menu.Item key="5"><Link to="/Admin/Contacts">Contact Messages</Link></Menu.Item>
                             <Menu.Item key="6"><Link to="/Formik">Formik Sample</Link></Menu.Item>
                             <Menu.Item key="7"><Link to="/Order">Order Sample</Link></Menu.Item>
 
@@ -63,7 +63,7 @@ function Admin() {
                                         <Category></Category>
                                     </CategoryProvider>
                                 </Route>
-                                <Route path="/Contacts">
+                                <Route path="/Admin/Contacts">
                                     <Contactlist></Contactlist>
                                 </Route>
                                 <Route path="/Formik">

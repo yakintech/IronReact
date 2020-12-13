@@ -763,6 +763,10 @@ Version:1.0
 	position: relative;
 	background: #f7941d;
 }
+
+.header.shop .all-category:hover > .main-category{
+	display: block;
+}
 .header.shop .all-category h3{
 	padding: 20px 25px;
 }
@@ -776,6 +780,8 @@ Version:1.0
 	margin-right: 15px;
 	font-size: 22px;
 }
+
+
 .header.shop .main-category {
 	position: absolute;
 	left: 0;
@@ -786,6 +792,7 @@ Version:1.0
 	-webkit-box-shadow: 0px 5px 15px #0000000a;
 	-moz-box-shadow: 0px 5px 15px #0000000a;
 	box-shadow: 0px 5px 15px #0000000a;
+	display: none;
 }
 .header.shop .main-category li{
 	display:block;

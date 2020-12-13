@@ -1,13 +1,12 @@
-import 'antd/dist/antd.css';
+
 import './index.css';
-import { Layout, Menu } from 'antd';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import React, { useEffect } from 'react'
-import Login from './components/admin/Login';
 import Admin from './components/admin/Admin';
 import Header from './components/site/Header'
 import Home from './components/site/Home';
 import Footer from './components/site/Footer';
+import Contact from './components/site/Contact/Contact';
 
 
 function App() {
@@ -38,6 +37,12 @@ function App() {
           <Route exact path="/">
             <Header></Header>
             <Home></Home>
+            <Footer></Footer>
+          </Route>
+
+          <Route exact path="/Contact">
+            <Header></Header>
+            <Contact></Contact>
             <Footer></Footer>
           </Route>
 

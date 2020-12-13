@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink, BrowserRouter,  Switch, Route } from 'react-router-dom';
 import { getall } from '../../services/baseservice'
+import Contact from '../site/Contact/Contact'
+
+
+import 'antd/dist/antd.css';
 
 function Header() {
 
@@ -74,12 +78,6 @@ function Header() {
                             <div className="col-lg-8 col-md-7 col-12">
                                 <div className="search-bar-top">
                                     <div className="search-bar">
-                                        <select>
-                                            <option defaultValue>All Category</option>
-                                            <option>watch</option>
-                                            <option>mobile</option>
-                                            <option>kid’s item</option>
-                                        </select>
                                         <form>
                                             <input name="search" placeholder="Search Products Here....." type="search" />
                                             <button className="btnn"><i className="ti-search" /></button>
@@ -155,23 +153,17 @@ function Header() {
                                             <div className="navbar-collapse">
                                                 <div className="nav-inner">
                                                     <ul className="nav main-menu menu navbar-nav">
-                                                        <li className="active"><a href="#">Home</a></li>
-                                                        <li><a href="#">Product</a></li>
-                                                        <li><a href="#">Service</a></li>
-                                                        <li><a href="#">Shop<i className="ti-angle-down" /><span className="new">New</span></a>
-                                                            <ul className="dropdown">
-                                                                <li><a href="shop-grid.html">Shop Grid</a></li>
-                                                                <li><a href="cart.html">Cart</a></li>
-                                                                <li><a href="checkout.html">Checkout</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="#">Pages</a></li>
-                                                        <li><a href="#">Blog<i className="ti-angle-down" /></a>
-                                                            <ul className="dropdown">
-                                                                <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="contact.html">Contact Us</a></li>
+                                                       
+                                                            <li className="active"><a href="/">Home</a></li>
+                                                            {/* <NavLink to="/about">About</NavLink> */}
+                                                            <li><a href="#">Service</a></li>
+                                                            <li><a href="#">Shop</a></li>
+                                                            <li><a href="#">Pages</a></li>
+                                                            <li><a href="#">Blog</a></li>
+                                                            <li><a href="/Contact">Contact Us</a></li>
+
+                                                        
+
                                                     </ul>
                                                 </div>
                                             </div>
