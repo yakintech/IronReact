@@ -5,6 +5,9 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import React, { useEffect } from 'react'
 import Login from './components/admin/Login';
 import Admin from './components/admin/Admin';
+import Header from './components/site/Header'
+import Home from './components/site/Home';
+import Footer from './components/site/Footer';
 
 
 function App() {
@@ -28,21 +31,31 @@ function App() {
 
 
   return (
-    <div>
-
+    <>
       <BrowserRouter>
-        <Layout>
+
+        <Switch>
+          <Route exact path="/">
+            <Header></Header>
+            <Home></Home>
+            <Footer></Footer>
+          </Route>
+
+          <Route exact path="/admin">
+            <Admin></Admin>
+          </Route>
+        </Switch>
+        {/* <Layout>
           <Route exact path="/Login">
             <Login></Login>
           </Route>
           <Route exact path="/admin">
             <Admin></Admin>
           </Route>
-        </Layout>
+        </Layout> */}
       </BrowserRouter>
 
-
-    </div>
+    </>
 
   );
 }
