@@ -7,9 +7,11 @@ import Header from './components/site/Header'
 import Home from './components/site/Home';
 import Footer from './components/site/Footer';
 import Contact from './components/site/Contact/Contact';
+import { CartProvider } from './context/Cartcontext';
 
 
 function App() {
+
 
   useEffect(() => {
     const requestOptions = {
@@ -33,23 +35,28 @@ function App() {
     <>
       <BrowserRouter>
 
-        <Switch>
-          <Route exact path="/">
-            <Header></Header>
-            <Home></Home>
-            <Footer></Footer>
-          </Route>
+        <CartProvider>
 
-          <Route exact path="/Contact">
-            <Header></Header>
-            <Contact></Contact>
-            <Footer></Footer>
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Header></Header>
+              <Home></Home>
+              <Footer></Footer>
+            </Route>
 
-          <Route exact path="/admin">
-            <Admin></Admin>
-          </Route>
-        </Switch>
+            <Route exact path="/Contact">
+              <Header></Header>
+              <Contact></Contact>
+              <Footer></Footer>
+            </Route>
+
+            <Route exact path="/admin">
+              <Admin></Admin>
+            </Route>
+          </Switch>
+
+        </CartProvider>
+
         {/* <Layout>
           <Route exact path="/Login">
             <Login></Login>

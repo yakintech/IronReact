@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { NavLink, BrowserRouter,  Switch, Route } from 'react-router-dom';
+import React, { useState, useEffect,useContext } from 'react'
 import { getall } from '../../services/baseservice'
-import Contact from '../site/Contact/Contact'
+import Cart from './Home/Cart';
+import cartContext from '../../context/Cartcontext'
 
 
 import 'antd/dist/antd.css';
 
 function Header() {
 
+    const {cart, setCart} = useContext(cartContext);
+
     const [categories, setCategories] = useState([]);
+
+
 
 
     useEffect(async () => {
@@ -95,35 +99,15 @@ function Header() {
                                         <a href="#" className="single-icon"><i className="fa fa-user-circle-o" aria-hidden="true" /></a>
                                     </div>
                                     <div className="sinlge-bar shopping">
-                                        <a href="#" className="single-icon"><i className="ti-bag" /> <span className="total-count">2</span></a>
+                                        <a href="#" className="single-icon"><i className="ti-bag" />
+                                        {
+                                            cart.pcount > 0 ? (<span className="total-count">{cart.pcount}</span>) : <></>
+                                        } 
+                                       
+                                       
+                                        </a>
                                         {/* Shopping Item */}
-                                        <div className="shopping-item">
-                                            <div className="dropdown-cart-header">
-                                                <span>2 Items</span>
-                                                <a href="#">View Cart</a>
-                                            </div>
-                                            <ul className="shopping-list">
-                                                <li>
-                                                    <a href="#" className="remove" title="Remove this item"><i className="fa fa-remove" /></a>
-                                                    <a className="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#" /></a>
-                                                    <h4><a href="#">Woman Ring</a></h4>
-                                                    <p className="quantity">1x - <span className="amount">$99.00</span></p>
-                                                </li>
-                                                <li>
-                                                    <a href="#" className="remove" title="Remove this item"><i className="fa fa-remove" /></a>
-                                                    <a className="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#" /></a>
-                                                    <h4><a href="#">Woman Necklace</a></h4>
-                                                    <p className="quantity">1x - <span className="amount">$35.00</span></p>
-                                                </li>
-                                            </ul>
-                                            <div className="bottom">
-                                                <div className="total">
-                                                    <span>Total</span>
-                                                    <span className="total-amount">$134.00</span>
-                                                </div>
-                                                <a href="checkout.html" className="btn animate">Checkout</a>
-                                            </div>
-                                        </div>
+                                        <Cart></Cart>
                                         {/*/ End Shopping Item */}
                                     </div>
                                 </div>
@@ -153,16 +137,16 @@ function Header() {
                                             <div className="navbar-collapse">
                                                 <div className="nav-inner">
                                                     <ul className="nav main-menu menu navbar-nav">
-                                                       
-                                                            <li className="active"><a href="/">Home</a></li>
-                                                            {/* <NavLink to="/about">About</NavLink> */}
-                                                            <li><a href="#">Service</a></li>
-                                                            <li><a href="#">Shop</a></li>
-                                                            <li><a href="#">Pages</a></li>
-                                                            <li><a href="#">Blog</a></li>
-                                                            <li><a href="/Contact">Contact Us</a></li>
 
-                                                        
+                                                        <li className="active"><a href="/">Home</a></li>
+                                                        {/* <NavLink to="/about">About</NavLink> */}
+                                                        <li><a href="#">Service</a></li>
+                                                        <li><a href="#">Shop</a></li>
+                                                        <li><a href="#">Pages</a></li>
+                                                        <li><a href="#">Blog</a></li>
+                                                        <li><a href="/Contact">Contact Us</a></li>
+
+
 
                                                     </ul>
                                                 </div>
