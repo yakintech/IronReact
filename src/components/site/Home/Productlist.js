@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { config } from '../../../env/config';
 import { getall } from '../../../services/baseservice'
+import cartContext from '../../../context/Cartcontext'
 
 function Productlist() {
 
+
+    const { cart, setCart } = useContext(cartContext);
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
 
@@ -18,12 +21,54 @@ function Productlist() {
 
     }, []);
 
+    // let data =
+    // {
+    //     pcount: 0,
+    //     totalprice: 0,
+    //     products: [
+    //         // { id: 3, name: "IPhone", price: 50, count: 2, img: "iron.jpg" },
+
+    //     ]
+    // };
+
+    const addcart = (item) => {
+
+        let cartproductcount = cart.pcount + 1;
+        let carttotalprice = cart.totalprice + item.price;
+
+        let cartcontrol = cart.products.find(q => q._id == item._id);
+        let newproduct = cartcontrol;
+
+        if (newproduct != undefined) {
+            newproduct.count = newproduct.count + 1;
+            newproduct.cartprice = newproduct.cartprice + item.price;
+        }
+        else {
+            item.count = 1;
+            item.cartprice =item.price;
+            cart.products.push(item);
+        }
+
+
+
+        let lastcartproducts = cart.products
+
+        let data =
+        {
+            pcount: cartproductcount,
+            totalprice: carttotalprice,
+            products: lastcartproducts
+        };
+
+
+        setCart(data);
+    }
+
 
 
     const getproductsbycategory = async (categoryid) => {
         let products = await getall('/api/products/getproductsbycategoryid/' + categoryid);
         setProducts(products);
-        console.log(products)
     }
 
     return (
@@ -48,7 +93,7 @@ function Productlist() {
                                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                                         {
 
-                                            categories.map((item) => (<li onClick={() => getproductsbycategory(item._id)} className="nav-item"><a className="nav-link" data-toggle="tab" href="#man" role="tab">{item.name}</a></li>))
+                                            categories.map((item) => (<li key={item._id} onClick={() => getproductsbycategory(item._id)} className="nav-item"><a className="nav-link" data-toggle="tab" href="#man" role="tab">{item.name}</a></li>))
                                         }
 
                                     </ul>
@@ -64,7 +109,7 @@ function Productlist() {
                                                     (
 
 
-                                                        <div className="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                        <div key={item._id} className="col-xl-3 col-lg-4 col-md-4 col-12">
                                                             <div className="single-product">
                                                                 <div className="product-img">
                                                                     <a href="product-details.html">
@@ -78,7 +123,7 @@ function Productlist() {
                                                                             <a title="Compare" href="#"><i className="ti-bar-chart-alt" /><span>Add to Compare</span></a>
                                                                         </div>
                                                                         <div className="product-action-2">
-                                                                            <a title="Add to cart" href="#">Add to cart</a>
+                                                                            <span onClick={() => addcart(item)}>Add to cart</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>

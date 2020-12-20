@@ -2016,6 +2016,9 @@ Version:1.0
 .single-product .product-content h3 a:hover{
 	color:#F7941D;
 }
+.single-product .product-content h3 span:hover{
+	color:#F7941D;
+}
 .single-product .product-content .product-price {
   margin: 6px 0 0 0;
 }

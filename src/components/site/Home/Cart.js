@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import cartContext from '../../../context/Cartcontext'
+import { config } from '../../../env/config';
 
 
 
@@ -11,10 +12,7 @@ function Cart() {
         {
             pcount: 0,
             totalprice: 0,
-            products: [
-                // { id: 3, name: "IPhone", price: 50, count: 2, img: "iron.jpg" },
-
-            ]
+            products: new Array()
         };
 
         
@@ -63,11 +61,11 @@ function Cart() {
                         cart.products == undefined ? <></> : 
                         cart.products.length > 0 ?
                             (
-                                cart.products.map((item) => (<li key={item.id}>
+                                cart.products.map((item) => (<li key={item._id}>
                                     <a href="#" className="remove" title="Remove this item"><i className="fa fa-remove" onClick={() => removeitem(item.id)} /></a>
-                                    <a className="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#" /></a>
+                                    <a className="cart-img" href="#"><img src={config.url + "/images/productimages/" + item.images[0]} alt="#" /></a>
                                     <h4><a href="#">{item.name}</a></h4>
-                                    <p className="quantity">{item.count}x - <span className="amount">${item.price}</span></p>
+                                    <p className="quantity">{item.count} x - <span className="amount">$ {item.cartprice}</span></p>
                                 </li>))
 
                             )
