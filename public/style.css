@@ -1221,7 +1221,7 @@ Version:1.0
 }
 .hero-slider .single-slider {
 	height: auto;
-	background-image: url('https://via.placeholder.com/1900x700');
+	background-image: url('./images/metalback.jpg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -3389,7 +3389,7 @@ Version:1.0
 }
 .shop.checkout .single-widget.get-button {
 	text-align: center;
-	padding:0px 35px;
+	padding-left: 15px;
 }
 .shop.checkout .single-widget.get-button .btn {
 	height: 46px;

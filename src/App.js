@@ -8,6 +8,7 @@ import Home from './components/site/Home';
 import Footer from './components/site/Footer';
 import Contact from './components/site/Contact/Contact';
 import { CartProvider } from './context/Cartcontext';
+import Checkout from './components/site/Checkout/Checkout';
 
 
 function App() {
@@ -41,6 +42,11 @@ function App() {
             <Route exact path="/">
               <Header></Header>
               <Home></Home>
+              <Footer></Footer>
+            </Route>
+            <Route exact path="/Checkout">
+              <Header></Header>
+              <Checkout></Checkout>
               <Footer></Footer>
             </Route>
 

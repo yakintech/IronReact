@@ -21,27 +21,22 @@ function Productlist() {
 
     }, []);
 
-    // let data =
-    // {
-    //     pcount: 0,
-    //     totalprice: 0,
-    //     products: [
-    //         // { id: 3, name: "IPhone", price: 50, count: 2, img: "iron.jpg" },
 
-    //     ]
-    // };
 
+    //Buradaki item tıklanılan ürün
     const addcart = (item) => {
 
         let cartproductcount = cart.pcount + 1;
         let carttotalprice = cart.totalprice + item.price;
 
+        //sepette ürün var mı kontrolü?
         let cartcontrol = cart.products.find(q => q._id == item._id);
+
         let newproduct = cartcontrol;
 
         if (newproduct != undefined) {
             newproduct.count = newproduct.count + 1;
-            newproduct.cartprice = newproduct.cartprice + item.price;
+            newproduct.cartprice =  item.price;
         }
         else {
             item.count = 1;
@@ -60,6 +55,7 @@ function Productlist() {
             products: lastcartproducts
         };
 
+        localStorage.setItem('cart',JSON.stringify(data));
 
         setCart(data);
     }
